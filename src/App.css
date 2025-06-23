@@ -1,38 +1,207 @@
+/* Global Resets and Layout Fix */
+* {
+  transition: all 0.4s ease;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(270deg, #ffecd2, #fcb69f, #a18cd1, #fbc2eb);
+  background-size: 800% 800%;
+  animation: gradientMove 15s ease infinite;
+  overflow: hidden;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Dark mode */
+.dark body {
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+}
+
+/* Full-screen Container */
 .App {
-  text-align: center;
-}
+  width: 100vw;
+  height: 100vh;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0); /* Remove drop shadow if filling screen */
+  backdrop-filter: blur(15px);
+  transition: all 0.3s ease;
+  overflow-y: auto;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.dark .App {
+  background: rgba(0, 0, 0, 0.35);
+  color: #eee;
+}
+
+.dark input,
+.dark li {
+  background: #1e1e2f;
+  color: #eee;
+}
+
+/* Typography */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+/* Input & Button Group */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  font-size: 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+button {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+/* Filters */
+.filters {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.filters button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  background: #e2e8f0;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background: #cbd5e1;
+}
+
+/* Task List */
+ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+li:hover {
+  background: #e2e8f0;
+}
+
+.dark li {
+  background: #2e2e3d;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.check {
+  color: #10b981;
+}
+
+.delete {
+  color: #ef4444;
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group button {
+    width: 100%;
+  }
+
+  ul {
+    max-width: 100%;
+  }
+}.clear-btn {
+  margin-left: 10px;
+  background: #f87171;
   color: white;
+  border-radius: 8px;
+  padding: 6px 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.clear-btn:hover {
+  background: #ef4444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.empty {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #64748b;
+  text-align: center;
 }
+
