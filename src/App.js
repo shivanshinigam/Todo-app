@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+
 import './App.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTrash, FaCheck, FaSun, FaMoon, FaEdit, FaBroom } from 'react-icons/fa';
@@ -71,26 +72,30 @@ function App() {
     if (e.key === 'Enter') addTask();
   };
 
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
+  const particlesInit = useCallback(async (engine) => {
+  await loadFull(engine);
+}, []);
+
 
   return (
     <div className={`App ${darkMode ? 'dark' : ''}`}>
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: { color: { value: 'transparent' } },
-          fpsLimit: 60,
-          particles: {
-            color: { value: '#ffffff' },
-            move: { enable: true, speed: 1 },
-            number: { value: 50 },
-            size: { value: 2 },
-          }
-        }}
-      />
+     {process.env.NODE_ENV !== 'test' && (
+  <Particles
+    id="tsparticles"
+    init={particlesInit}
+    options={{
+      background: { color: { value: 'transparent' } },
+      fpsLimit: 60,
+      particles: {
+        color: { value: '#ffffff' },
+        move: { enable: true, speed: 1 },
+        number: { value: 50 },
+        size: { value: 2 },
+      }
+    }}
+  />
+)}
+
 
       {showConfetti && <Confetti recycle={false} numberOfPieces={300} />}
 
