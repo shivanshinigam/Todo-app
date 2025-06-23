@@ -1,6 +1,6 @@
 /* Global Resets and Layout Fix */
 * {
-  transition: all 0.4s ease;
+  transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
